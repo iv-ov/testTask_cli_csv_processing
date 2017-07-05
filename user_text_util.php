@@ -102,7 +102,10 @@ $task_mapping_word2method = [
 ];
 
 if ($argc < 3){
-    echo 'Specify a delimiter and a task', "\n";
+    echo 'Specify a delimiter ("', implode('", "', array_keys($delimiter_mapping_word2char)), '"',
+        ') and a task ("', implode('", "', array_keys($task_mapping_word2method)), '"',
+        ")\n"
+    ;
 
     // @todo: consider if it should return error code (other than 0)?
     return;
