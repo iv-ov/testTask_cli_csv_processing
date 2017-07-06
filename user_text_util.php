@@ -26,7 +26,7 @@ class UserTextsProcessing {
         $users = [];
 
         while (
-        ($data = fgetcsv($this->handle, 0, $this->delimiter)) !== FALSE
+            ($data = fgetcsv($this->handle, 0, $this->delimiter)) !== FALSE
         ) {
             $users[] = [
                 'id' => (int) $data[0],
@@ -113,9 +113,9 @@ if ($argc < 3){
 $delimiter_word = $argv[1];
 $task = $argv[2];
 
-$csv_processing = new UserTextsProcessing($peoples_file, $delimiter_mapping_word2char[$delimiter_word]);
+$user_texts_processing = new UserTextsProcessing($peoples_file, $delimiter_mapping_word2char[$delimiter_word]);
 
-$result = $csv_processing->{$task_mapping_word2method[$task]}();
+$result = $user_texts_processing->{$task_mapping_word2method[$task]}();
 
 printResult($result, 'averageLineCount');
 
