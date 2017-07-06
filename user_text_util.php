@@ -97,17 +97,22 @@ $delimiter_mapping_word2char = [
     'comma' => ',',
     'semicolon' => ';',
 ];
+$task_mapping_word2method = [
+    'countAverageLineCount' => 'getAverageLineCounts',
+];
 
+if ($argc < 3){
+    echo 'Specify a delimiter and a task', "\n";
+
+    // @todo: consider if it should return error code (other than 0)?
+    return;
+}
 $delimiter_word = $argv[1];
-
-$command = 'countAverageLineCount';
+$task = $argv[2];
 
 $csv_processing = new UserTextsProcessing($peoples_file, $delimiter_mapping_word2char[$delimiter_word]);
 
-$command2method_mapping = [
-    'countAverageLineCount' => 'getAverageLineCounts',
-];
-$result = $csv_processing->{$command2method_mapping[$command]}();
+$result = $csv_processing->{$task_mapping_word2method[$task]}();
 
 printResult($result, 'averageLineCount');
 
