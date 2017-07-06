@@ -92,9 +92,17 @@ class UserTextsProcessing {
 //php user_text_util.php comma countAverageLineCount
 
 $peoples_file = './people.csv';
-$delimiter = ';';
+
+$delimiter_mapping_word2char = [
+    'comma' => ',',
+    'semicolon' => ';',
+];
+
+$delimiter_word = $argv[1];
+
 $command = 'countAverageLineCount';
-$csv_processing = new UserTextsProcessing($peoples_file, $delimiter);
+
+$csv_processing = new UserTextsProcessing($peoples_file, $delimiter_mapping_word2char[$delimiter_word]);
 
 $command2method_mapping = [
     'countAverageLineCount' => 'getAverageLineCounts',
